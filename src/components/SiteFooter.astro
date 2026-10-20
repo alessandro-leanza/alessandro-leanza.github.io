@@ -1,0 +1,16 @@
+---
+import ProfileLink from './ProfileLink.astro';
+import { links } from '../data/links';
+---
+<footer class="site-footer container">
+  <div class="footer-row">
+    <p class="footer-name">Alessandro Leanza</p>
+    <ul class="footer-links" aria-label="Contact and profiles">
+      <li><ProfileLink href={links.email} label="Email" /></li>
+      <li><ProfileLink href={links.github} label="GitHub" /></li>
+      <li><ProfileLink href={links.linkedin} label="LinkedIn" /></li>
+      <li><ProfileLink href={links.scholar} label="Google Scholar" /></li>
+    </ul>
+  </div>
+  <p class="link-note">* Contact, profile, and CV destinations are placeholders until verified links are provided.</p>
+</footer>

@@ -1,0 +1,34 @@
+---
+import SectionHeading from '../SectionHeading.astro';
+import ArrowIcon from '../ArrowIcon.astro';
+import ProjectCard from '../ProjectCard.astro';
+// Add href: '/projects/<slug>/' once a project's detail route exists.
+const projects = [
+  {
+    title: 'ConceptBot',
+    description: 'Knowledge-graph-grounded commonsense reasoning for LLM-based robot task planning.',
+    tags: ['Knowledge graphs', 'Robot planning'],
+  },
+  {
+    title: 'Context-Aware Exoskeleton Assistance',
+    description: 'Multimodal perception and adaptive control combining gaze, vision, and physical interaction.',
+    tags: ['Multimodal perception', 'Adaptive control'],
+  },
+  {
+    title: 'Graph-Based RAG for Robot Planning',
+    description: 'Local, provenance-aware retrieval and knowledge graphs for grounded robot task decomposition.',
+    tags: ['RAG', 'Knowledge graphs'],
+  },
+  {
+    title: 'Learning Compliance with Diffusion Policies',
+    description: 'Learning adaptive compliant robot behaviour from multimodal demonstrations.',
+    tags: ['Diffusion policies', 'Robot learning'],
+  },
+];
+---
+<section class="section" id="selected-projects" aria-labelledby="projects-title">
+  <SectionHeading id="projects-title" title="Selected Projects" number="01">
+    <a class="text-link" href="/projects/">All projects <ArrowIcon /></a>
+  </SectionHeading>
+  <div class="project-grid">{projects.map(project => <ProjectCard {...project} />)}</div>
+</section>

@@ -1,0 +1,10 @@
+---
+import SectionHeading from '../SectionHeading.astro';
+const topics = ['Embodied AI', 'Generative AI & Reasoning', 'Multimodal Robot Learning'];
+---
+<section class="section" aria-labelledby="research-title">
+  <SectionHeading id="research-title" title="Research Focus" number="02" />
+  <div class="research-grid">
+    {topics.map(topic => <div class="research-block"><h3>{topic}</h3></div>)}
+  </div>
+</section>

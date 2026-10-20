@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import SelectedProjects from '../components/home/SelectedProjects.astro';
+import ResearchFocus from '../components/home/ResearchFocus.astro';
+import SelectedPublications from '../components/home/SelectedPublications.astro';
+import AboutPreview from '../components/home/AboutPreview.astro';
+---
+<BaseLayout
+  title="AI & Robotics Research"
+  description="Alessandro Leanza, PhD Candidate in AI & Robotics at IDSIA USI-SUPSI. Research in embodied AI, multimodal robot learning, generative AI, and LLM/RAG."
+  home
+>
+  <Hero />
+  <SelectedProjects />
+  <ResearchFocus />
+  <SelectedPublications />
+  <AboutPreview />
+</BaseLayout>

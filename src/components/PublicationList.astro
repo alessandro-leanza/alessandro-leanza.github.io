@@ -1,0 +1,17 @@
+---
+interface Props {
+  placeholders?: number;
+}
+const { placeholders = 2 } = Astro.props;
+---
+<ol class="publication-list" aria-label="Publication placeholders">
+  {Array.from({ length: placeholders }, (_, index) => (
+    <li>
+      <span class="publication-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <div>
+        <h3>Publication entry — placeholder</h3>
+        <p>Title, authors, and publication details to be added.</p>
+      </div>
+    </li>
+  ))}
+</ol>

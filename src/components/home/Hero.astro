@@ -1,0 +1,18 @@
+---
+import ProfileLink from '../ProfileLink.astro';
+import { links } from '../../data/links';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <p class="eyebrow">Research / AI &amp; Robotics</p>
+  <h1 id="hero-title">Alessandro Leanza</h1>
+  <p class="hero-role">PhD Candidate in AI &amp; Robotics at <span>IDSIA USI-SUPSI</span></p>
+  <p class="hero-topics">Embodied AI <span>·</span> Multimodal Robot Learning <span>·</span> Generative AI <span>·</span> LLM/RAG</p>
+  <p class="hero-intro">I develop AI systems that connect reasoning, perception, and physical interaction, from knowledge-grounded LLM planning to multimodal robot learning and adaptive human–robot systems.</p>
+  <div class="hero-actions" aria-label="Explore research and profiles">
+    <a class="button button-primary" href="#selected-projects">Selected Projects <span aria-hidden="true">↓</span></a>
+    <a class="button" href="/publications/">Publications</a>
+    <ProfileLink class="action-link" href={links.cv} label="CV" />
+    <ProfileLink class="action-link" href={links.github} label="GitHub" />
+  </div>
+  <p class="link-note">* Profile and CV links are placeholders.</p>
+</section>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string | null;
+  label: string;
+  class?: string;
+}
+const { href, label, class: className } = Astro.props;
+---
+{href ? (
+  <a href={href} class={className}>{label}</a>
+) : (
+  <span class:list={[className, 'unavailable-link']} aria-disabled="true" title={`${label} — placeholder, link not yet provided`}>
+    {label}<span class="placeholder-mark" aria-hidden="true">*</span>
+    <span class="sr-only"> (placeholder, link not yet provided)</span>
+  </span>
+)}

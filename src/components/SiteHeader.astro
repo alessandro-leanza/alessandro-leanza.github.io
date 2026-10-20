@@ -1,0 +1,21 @@
+---
+import ProfileLink from './ProfileLink.astro';
+import { links } from '../data/links';
+const navigation = [
+  { href: '/projects/', label: 'Projects' },
+  { href: '/publications/', label: 'Publications' },
+  { href: '/about/', label: 'About' },
+];
+const pathname = Astro.url.pathname;
+---
+<header class="site-header container">
+  <a class="site-name" href="/" aria-label="Alessandro Leanza — home">Alessandro Leanza<span class="name-dot" aria-hidden="true">.</span></a>
+  <nav aria-label="Main navigation">
+    <ul>
+      {navigation.map(({ href, label }) => (
+        <li><a href={href} aria-current={pathname.startsWith(href) ? 'page' : undefined}>{label}</a></li>
+      ))}
+      <li><ProfileLink href={links.cv} label="CV" /></li>
+    </ul>
+  </nav>
+</header>
