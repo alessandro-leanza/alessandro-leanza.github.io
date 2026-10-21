@@ -1,0 +1,99 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectHero from '../../components/project/ProjectHero.astro';
+import ProjectMedia from '../../components/project/ProjectMedia.astro';
+import ProjectPipeline from '../../components/project/ProjectPipeline.astro';
+import MetricCard from '../../components/project/MetricCard.astro';
+import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
+import CitationBlock from '../../components/project/CitationBlock.astro';
+import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
+import { existsSync } from 'node:fs';
+import { conceptbot, metrics, stages, snapshot, bibtex } from '../../data/conceptbot';
+const media = conceptbot.media;
+const socialImage = existsSync(`public${media.architecture}`) ? media.architecture : undefined;
+---
+<ProjectLayout title={conceptbot.title} description={conceptbot.description} socialImage={socialImage}>
+  <ProjectHero
+    eyebrow="LLM PLANNING / KNOWLEDGE GRAPHS / ROBOTICS"
+    title={conceptbot.title}
+    subtitle={conceptbot.subtitle}
+    intro="ConceptBot is a modular robot-planning framework that combines large language model reasoning with commonsense knowledge from ConceptNet. It enriches detected objects with task-relevant semantic properties, resolves ambiguous or implicit user requests, and grounds the resulting intent into scene-valid pick-and-place policies."
+    authors={conceptbot.authors}
+    paper={conceptbot.paper}
+    code={conceptbot.code}
+  />
+  <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} />
+
+  <section class="section project-section" aria-labelledby="problem-title">
+    <SectionHeading id="problem-title" title="The problem" number="01" />
+    <div class="project-prose">
+      <p>LLM-based robot planners can produce plausible action sequences while still missing commonsense information that matters for the task: whether an object is fragile, dangerous, poisonous, suitable for holding liquid, or unsafe in combination with another object.</p>
+      <p>The problem becomes harder when user instructions are ambiguous or implicit. A request may describe a need rather than explicitly name the object and destination required to satisfy it.</p>
+      <p>ConceptBot introduces structured external commonsense knowledge before task-level planning, grounding semantic interpretation in the current symbolic scene and the robot’s available action interface.</p>
+    </div>
+  </section>
+
+  <section class="section project-section" aria-labelledby="approach-title">
+    <SectionHeading id="approach-title" title="Approach" number="02" />
+    <ProjectPipeline stages={stages} />
+    <aside class="project-callout" aria-labelledby="risk-title">
+      <h3 id="risk-title">Risk-aware reasoning</h3>
+      <p>ConceptBot can activate an interaction-aware Risk Index that estimates semantic risk for individual objects and object–object interactions. This information is used by URP when resolving the request; it is not a physics-based safety certificate or a replacement for low-level geometric and physical validation.</p>
+    </aside>
+    <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} compact />
+  </section>
+
+  <section class="section project-section" aria-labelledby="results-title">
+    <SectionHeading id="results-title" title="Key results" number="03" />
+    <p class="project-lead">ConceptBot was evaluated on a 47-instruction symbolic planning benchmark spanning unambiguous, ambiguous, implicit, risk-aware, materials, and toxicity tasks. The percentages below measure planning-policy correctness rather than physical robot task success.</p>
+    <div class="metrics-grid">{metrics.map(metric => <MetricCard {...metric} />)}</div>
+    <p class="project-note results-qualification">The symbolic benchmark evaluates task-level policy correctness. The controlled robot runs separately demonstrate planner-to-execution integration under supported perception and manipulation conditions; they do not establish general perception, grasping, placement-stability, or controller robustness.</p>
+  </section>
+
+  <section class="section project-section" aria-labelledby="grounding-title">
+    <SectionHeading id="grounding-title" title="Why grounding matters" number="04" />
+    <p class="project-lead">In a representative risk-sensitive task, the baseline places a bottle inside a ceramic bowl, creating a potential breakage risk. ConceptBot uses object-property and risk information through OPE and URP to construct a safer structured request, placing the bottle in front of the bowl instead.</p>
+    <ProjectMedia label="Risk-sensitive ConceptBot vs baseline example" image={media.qualitative} video={media.riskVideo} poster={media.poster} />
+  </section>
+
+  <section class="section project-section" aria-labelledby="deployment-title">
+    <SectionHeading id="deployment-title" title="From symbolic planning to robot execution" number="05" />
+    <div class="project-prose">
+      <p>ConceptBot was integrated with both simulation and physical manipulation stacks. In simulation, representative tasks used a UR5e robot with a Robotiq 2F85 gripper in PyBullet, with CLIPort used for pick-and-place execution. Real-world trials used a Franka Emika Panda with an Intel RealSense D435 RGB-D camera, YOLOv8 object detection, and FrankaPy for execution.</p>
+      <p>The deployment experiments were intentionally separated from the symbolic benchmark so that planning-policy correctness is not confused with end-to-end perception or control performance.</p>
+    </div>
+    <ProjectMedia label="PyBullet and Franka deployment media" image={media.deployment} video={media.deploymentVideo} poster={media.poster} />
+  </section>
+
+  <section class="section project-section" aria-labelledby="technical-title">
+    <SectionHeading id="technical-title" title="Technical snapshot" number="06" />
+    <TechnicalSnapshot entries={snapshot} />
+  </section>
+
+  <section class="section project-section evaluation-section" aria-labelledby="evaluation-title">
+    <SectionHeading id="evaluation-title" title="Evaluation design" number="07" />
+    <details class="evaluation-details">
+      <summary>Benchmark composition and policy evaluation</summary>
+      <div class="project-prose">
+        <p>The benchmark contains 47 expert-validated instructions. Each instruction is evaluated through 10 complete policy-generation repetitions, with the instruction—not an individual model call—treated as the statistical unit.</p>
+        <p>Admissible policies are evaluated against expert-validated sets of task outcomes rather than against a single literal action sequence. This allows alternative valid solutions while still rejecting missing, duplicated, invalid, unsafe, or unrequested actions.</p>
+      </div>
+      <ul class="benchmark-categories">
+        <li>7 unambiguous</li><li>10 ambiguous</li><li>10 implicit</li>
+        <li>8 risk-aware</li><li>7 materials</li><li>5 toxicity</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="section project-section" aria-labelledby="publication-title">
+    <SectionHeading id="publication-title" title="Publication" number="08" />
+    <div class="project-publication">
+      <h3>ConceptBot: {conceptbot.subtitle}</h3>
+      <p class="project-authors">{conceptbot.authors.join(', ')}</p>
+      <div class="publication-actions"><a class="text-link" href={conceptbot.paper}>Paper</a><a class="text-link" href={conceptbot.code}>Code</a></div>
+    </div>
+    <CitationBlock bibtex={bibtex} />
+  </section>
+  <ProjectNavigation />
+</ProjectLayout>

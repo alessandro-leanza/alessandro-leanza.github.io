@@ -1,0 +1,15 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  supporting: string;
+  comparison: string;
+}
+const { value, label, supporting, comparison } = Astro.props;
+---
+<div class="metric-card">
+  <p class="metric-value">{value}</p>
+  <h3>{label}</h3>
+  <p class="metric-supporting">{supporting}</p>
+  <p class="metric-comparison">{comparison}</p>
+</div>

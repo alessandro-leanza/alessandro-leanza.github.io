@@ -50,3 +50,18 @@ accept an optional `href`; add it when the matching `/projects/<slug>/` route ex
 Replace the labeled image areas, publication entries, and biography placeholder
 with verified content when available. Typography uses locally available sans-serif
 fonts; no remote font or client-side JavaScript is required.
+
+## Research project pages
+
+ConceptBot is available at `/projects/conceptbot/`. Future project pages can use
+`src/layouts/ProjectLayout.astro` with the reusable hero, pipeline, metric cards,
+media, technical snapshot, citation, and navigation in `src/components/project/`.
+Project-specific research data is kept in `src/data/conceptbot.ts`; project-only
+styles live in `src/styles/project.css` and reuse the global design tokens.
+
+Add verified ConceptBot assets under `public/projects/conceptbot/`; see that
+directory's README for filenames and video requirements. Missing assets render
+labelled placeholders. Rebuild after adding files. Social previews fall back to
+text metadata until the architecture image is available. Videos start paused;
+BibTeX is selectable without JavaScript, with an enhanced copy button when the
+Clipboard API is available.

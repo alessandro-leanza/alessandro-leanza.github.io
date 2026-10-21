@@ -1,7 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 ---
 <BaseLayout title="Projects">
   <h1>Projects</h1>
-  <p class="placeholder">Placeholder: projects content will be added here.</p>
+  <div class="project-grid">
+    <ProjectCard
+      title="ConceptBot"
+      description="Knowledge-graph-grounded commonsense reasoning for LLM-based robot task planning."
+      tags={['Knowledge Graphs', 'LLM Planning', 'Robot Planning']}
+      href="/projects/conceptbot/"
+    />
+  </div>
 </BaseLayout>

@@ -1,0 +1,31 @@
+---
+interface Props { bibtex: string; }
+const { bibtex } = Astro.props;
+---
+<div class="citation-block" id="citation">
+  <div class="citation-heading">
+    <h3>BibTeX — arXiv preprint</h3>
+    <button class="button copy-citation" type="button" hidden>Copy BibTeX</button>
+    <span class="sr-only copy-status" role="status"></span>
+  </div>
+  <p class="project-note">This is the arXiv/preprint citation; it can be replaced with final publication metadata when available.</p>
+  <pre tabindex="0" aria-label="BibTeX citation"><code>{bibtex}</code></pre>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('.citation-block').forEach(block => {
+    const button = block.querySelector<HTMLButtonElement>('.copy-citation');
+    const code = block.querySelector('code');
+    const status = block.querySelector('.copy-status');
+    if (!button || !code || !status || !navigator.clipboard) return;
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent ?? '');
+        status.textContent = 'BibTeX copied.';
+        button.textContent = 'Copied';
+      } catch {
+        status.textContent = 'Copy unavailable. Select and copy the citation text below.';
+      }
+    });
+  });
+</script>

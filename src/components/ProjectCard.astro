@@ -15,7 +15,7 @@ const { title, description, tags = [], href } = Astro.props;
     <span>Project image <span aria-hidden="true">/</span> placeholder</span>
   </div>
   <div class="project-body">
-    <h3>{href ? <a href={href}>{title}<ArrowIcon /></a> : title}</h3>
+    <h3>{href ? <a href={href} aria-label={`View ${title} project`}>{title}<ArrowIcon /></a> : title}</h3>
     <p>{description}</p>
     {tags.length > 0 && <ul class="tags" aria-label="Research topics">{tags.map(tag => <li>{tag}</li>)}</ul>}
   </div>

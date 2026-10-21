@@ -1,0 +1,15 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/project.css';
+interface Props {
+  title: string;
+  description: string;
+  socialImage?: string;
+}
+const { title, description, socialImage } = Astro.props;
+---
+<BaseLayout title={title} pageTitle={`${title} — Alessandro Leanza`} description={description} socialImage={socialImage} home>
+  <article class="research-project">
+    <slot />
+  </article>
+</BaseLayout>

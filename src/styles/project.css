@@ -1,0 +1,82 @@
+/* Research-page primitives reuse global tokens without changing site chrome. */
+.research-project { padding-top: 3.5rem; }
+.project-hero { max-width: 57rem; padding-bottom: 2.5rem; }
+.project-hero h1 { margin-block: 1rem 0.7rem; font-size: clamp(2.6rem, 6vw, 3.8rem); }
+.project-subtitle { max-width: 44rem; font-size: clamp(1.15rem, 2.5vw, 1.6rem); line-height: 1.45; letter-spacing: -0.025em; }
+.project-intro { max-width: 50rem; margin-top: 1.5rem; color: var(--muted); font-size: 1rem; line-height: 1.8; }
+.project-authors { margin-top: 1.3rem; font-size: 0.8rem; line-height: 1.8; color: var(--muted); }
+.project-hero .hero-actions { margin-top: 1.5rem; gap: 0.8rem 1.25rem; }
+.project-section .section-heading { margin-bottom: 1.5rem; }
+.project-prose, .project-lead { max-width: 51rem; font-size: 0.95rem; color: var(--muted); }
+.project-prose p + p { margin-top: 1rem; }
+.project-note { font-size: 0.8rem; line-height: 1.75; color: var(--muted); }
+
+.project-media { margin: 1.75rem 0 0; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; background: var(--image-surface); }
+.project-hero + .project-media { margin-top: 0; margin-bottom: 3rem; }
+.project-media-placeholder { aspect-ratio: 16 / 6; min-height: 10rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.project-media-placeholder .eyebrow { font-size: 0.6rem; }
+.project-media-compact .project-media-placeholder { aspect-ratio: 16 / 3; min-height: 8rem; }
+.project-media img, .project-media video { display: block; width: 100%; height: auto; }
+.project-media figcaption { padding: 0.65rem 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; background: var(--surface); }
+
+.project-pipeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; margin: 0; list-style: none; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); }
+.project-pipeline li { position: relative; min-width: 0; padding: 1.5rem; }
+.project-pipeline li + li { border-left: 1px solid var(--border); }
+.project-pipeline li + li::before { content: '→'; position: absolute; top: 1.6rem; left: -0.5rem; line-height: 1; color: var(--accent); background: var(--surface); }
+.pipeline-step { font-family: ui-monospace, monospace; font-size: 0.65rem; color: var(--accent); }
+.project-pipeline h3 { margin-top: 0.7rem; }
+.project-pipeline .pipeline-title { color: var(--text); font-size: 0.8rem; margin-top: 0.25rem; }
+.project-pipeline p { color: var(--muted); font-size: 0.85rem; margin-top: 0.9rem; }
+.project-callout { border-left: 2px solid var(--accent); padding-left: 1.25rem; margin-block: 1.75rem; max-width: 55rem; }
+.project-callout h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+.project-callout p { font-size: 0.85rem; color: var(--muted); }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.75rem; }
+.metric-card { padding: 1.25rem; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); }
+.metric-value { font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.2; letter-spacing: -0.045em; color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.metric-card h3 { font-size: 0.9rem; margin-top: 1rem; }
+.metric-supporting { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
+.metric-comparison { border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: 1rem; font-size: 0.72rem; color: var(--muted); }
+.results-qualification { margin-top: 1.25rem; max-width: 58rem; }
+
+.technical-snapshot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; gap: 0 2rem; }
+.technical-snapshot > div { padding-block: 1rem; border-top: 1px solid var(--border); min-width: 0; }
+.technical-snapshot dt { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.35rem; }
+.technical-snapshot dd { margin: 0; font-size: 0.85rem; overflow-wrap: anywhere; }
+.evaluation-section h2 { font-size: 1.2rem; }
+.evaluation-details summary { color: var(--accent); font-size: 0.85rem; cursor: pointer; padding-block: 0.5rem; }
+.evaluation-details[open] summary { margin-bottom: 1rem; }
+.evaluation-details .project-prose { font-size: 0.85rem; }
+.benchmark-categories { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding: 0; margin: 1.5rem 0 0; list-style: none; font-size: 0.75rem; color: var(--muted); }
+
+.project-publication { max-width: 51rem; }
+.project-publication h3 { font-size: 1.1rem; line-height: 1.5; }
+.publication-actions { display: flex; gap: 1.5rem; margin-top: 1rem; }
+.citation-block { margin-top: 2rem; scroll-margin-top: 2rem; min-width: 0; }
+.citation-heading { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+.citation-heading h3 { font-size: 0.9rem; }
+.copy-citation { background: transparent; font-family: inherit; cursor: pointer; }
+.copy-citation[hidden] { display: none; }
+.citation-block pre { max-width: 100%; overflow-x: auto; border: 1px solid var(--border); border-radius: 3px; padding: 1.5rem; margin: 1rem 0 0; background: var(--surface); font-size: 0.75rem; line-height: 1.8; }
+.citation-block code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.project-navigation { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid var(--border); padding-block: 2rem 3rem; }
+
+@media (max-width: 1000px) {
+  .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .technical-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .research-project { padding-top: 2.5rem; }
+  .project-hero { padding-bottom: 2rem; }
+  .project-pipeline { grid-template-columns: 1fr; }
+  .project-pipeline li + li { border-left: 0; border-top: 1px solid var(--border); }
+  .project-pipeline li + li::before { content: '↓'; top: -0.5rem; left: 1.5rem; }
+  .project-media-placeholder { aspect-ratio: 4 / 3; font-size: 0.8rem; }
+  .project-media-compact .project-media-placeholder { aspect-ratio: 2 / 1; }
+  .metric-card { padding: 1rem; }
+  .technical-snapshot { gap: 0 1rem; }
+  .citation-block pre { padding: 1rem; }
+}
+@media (max-width: 370px) {
+  .metrics-grid, .technical-snapshot { grid-template-columns: 1fr; }
+}

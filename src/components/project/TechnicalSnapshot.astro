@@ -1,0 +1,9 @@
+---
+interface Props {
+  entries: { label: string; value: string }[];
+}
+const { entries } = Astro.props;
+---
+<dl class="technical-snapshot">
+  {entries.map(entry => <div><dt>{entry.label}</dt><dd>{entry.value}</dd></div>)}
+</dl>

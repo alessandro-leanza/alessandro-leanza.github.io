@@ -7,8 +7,12 @@ interface Props {
   title: string;
   description?: string;
   home?: boolean;
+  pageTitle?: string;
+  socialImage?: string;
 }
-const { title, description, home = false } = Astro.props;
+const { title, description, home = false, pageTitle = `${title} | Alessandro Leanza`, socialImage } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const previewImage = socialImage ? new URL(socialImage, Astro.site) : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -17,8 +21,15 @@ const { title, description, home = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f8f7f4" />
     {description && <meta name="description" content={description} />}
-    <title>{title} | Alessandro Leanza</title>
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:url" content={canonical} />
+    {description && <meta property="og:description" content={description} />}
+    <meta name="twitter:card" content={previewImage ? 'summary_large_image' : 'summary'} />
+    {previewImage && <meta property="og:image" content={previewImage} />}
+    {previewImage && <meta property="og:image:alt" content={`${title} — project figure`} />}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

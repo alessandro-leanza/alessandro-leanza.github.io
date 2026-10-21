@@ -1,0 +1,16 @@
+---
+interface Props {
+  stages: { name: string; title?: string; text: string }[];
+}
+const { stages } = Astro.props;
+---
+<ol class="project-pipeline" aria-label="Planning pipeline">
+  {stages.map((stage, index) => (
+    <li>
+      <span class="pipeline-step" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <h3>{stage.name}</h3>
+      {stage.title && <p class="pipeline-title">{stage.title}</p>}
+      <p>{stage.text}</p>
+    </li>
+  ))}
+</ol>
