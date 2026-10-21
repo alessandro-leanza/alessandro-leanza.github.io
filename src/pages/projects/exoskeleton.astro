@@ -1,0 +1,53 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectHero from '../../components/project/ProjectHero.astro';
+import ProjectPipeline from '../../components/project/ProjectPipeline.astro';
+import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
+import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
+import { exoskeleton, exoskeletonStages, exoskeletonSnapshot } from '../../data/exoskeleton';
+---
+<ProjectLayout title={exoskeleton.title} description={exoskeleton.description}>
+  <ProjectHero
+    eyebrow="MULTIMODAL PERCEPTION / ADAPTIVE CONTROL / WEARABLE ROBOTICS"
+    title={exoskeleton.title}
+    subtitle="Connecting task context with the timing and magnitude of physical assistance."
+    intro={exoskeleton.intro}
+    paper={exoskeleton.preprint}
+    paperLabel="Preprint (arXiv)"
+    code={exoskeleton.code}
+    showCitation={false}
+  />
+
+  <section class="section project-section" aria-labelledby="exoskeleton-problem">
+    <SectionHeading id="exoskeleton-problem" title="The problem" number="01" />
+    <div class="project-prose">
+      <p>During manual handling, useful support depends on both when assistance is activated and how it adapts to the task. Posture alone does not describe which object the user is attending to, whether it is being handled, or what load it introduces.</p>
+      <p>This project investigates how visual and gaze information can complement the signals available to a back-support exoskeleton, connecting scene understanding with physical assistance.</p>
+    </div>
+  </section>
+
+  <section class="section project-section" aria-labelledby="exoskeleton-approach">
+    <SectionHeading id="exoskeleton-approach" title="Approach" number="02" />
+    <ProjectPipeline stages={exoskeletonStages} />
+  </section>
+
+  <section class="section project-section" aria-labelledby="exoskeleton-implementation">
+    <SectionHeading id="exoskeleton-implementation" title="Implementation" number="03" />
+    <div class="project-prose">
+      <p>The public code integrates the Tobii perception application, a Moteus motor-controller node, and a ROS 2 admittance controller. Perception cues and joint-state information inform a finite-state assistance policy for pick-and-place handling.</p>
+      <p>The controller blends trunk and payload compensation, ramps stiffness and damping between interaction profiles, and publishes telemetry for inspecting the system’s behaviour. The perception models and control settings are tied to the experimental setup; this overview makes no claim of general deployment performance.</p>
+    </div>
+    <TechnicalSnapshot entries={exoskeletonSnapshot} />
+  </section>
+
+  <section class="section project-section" aria-labelledby="exoskeleton-resources">
+    <SectionHeading id="exoskeleton-resources" title="Resources" number="04" />
+    <p class="project-lead">Explore the public control stack and the earlier arXiv preprint for further context.</p>
+    <div class="publication-actions">
+      <a class="text-link" href={exoskeleton.preprint}>Earlier preprint (arXiv)</a>
+      <a class="text-link" href={exoskeleton.code}>Code on GitHub</a>
+    </div>
+  </section>
+  <ProjectNavigation />
+</ProjectLayout>

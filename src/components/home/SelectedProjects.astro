@@ -4,6 +4,7 @@ import ArrowIcon from '../ArrowIcon.astro';
 import ProjectCard from '../ProjectCard.astro';
 import { conceptbot } from '../../data/conceptbot';
 import { graphrag } from '../../data/graphrag';
+import { exoskeleton } from '../../data/exoskeleton';
 // Add href: '/projects/<slug>/' once a project's detail route exists.
 const projects = [
   {
@@ -15,9 +16,10 @@ const projects = [
     imageAlt: 'ConceptBot planning pipeline and robot execution compared with SayCan',
   },
   {
-    title: 'Context-Aware Exoskeleton Assistance',
-    description: 'Multimodal perception and adaptive control combining gaze, vision, and physical interaction.',
-    tags: ['Multimodal perception', 'Adaptive control'],
+    title: exoskeleton.title,
+    description: exoskeleton.cardDescription,
+    tags: exoskeleton.tags,
+    href: exoskeleton.path,
   },
   {
     title: 'Graph-Based RAG for Robot Planning',

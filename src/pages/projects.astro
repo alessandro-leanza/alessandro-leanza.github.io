@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { conceptbot } from '../data/conceptbot';
 import { graphrag } from '../data/graphrag';
+import { exoskeleton } from '../data/exoskeleton';
 ---
 <BaseLayout title="Projects">
   <h1>Projects</h1>
@@ -14,6 +15,12 @@ import { graphrag } from '../data/graphrag';
       href="/projects/conceptbot/"
       image={conceptbot.media.qualitative}
       imageAlt="ConceptBot planning pipeline and robot execution compared with SayCan"
+    />
+    <ProjectCard
+      title={exoskeleton.title}
+      description={exoskeleton.cardDescription}
+      tags={exoskeleton.tags}
+      href={exoskeleton.path}
     />
     <ProjectCard
       title={graphrag.title}
