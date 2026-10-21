@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { conceptbot } from '../data/conceptbot';
 ---
 <BaseLayout title="Projects">
   <h1>Projects</h1>
@@ -10,6 +11,8 @@ import ProjectCard from '../components/ProjectCard.astro';
       description="Knowledge-graph-grounded commonsense reasoning for LLM-based robot task planning."
       tags={['Knowledge Graphs', 'LLM Planning', 'Robot Planning']}
       href="/projects/conceptbot/"
+      image={conceptbot.media.qualitative}
+      imageAlt="ConceptBot planning pipeline and robot execution compared with SayCan"
     />
   </div>
 </BaseLayout>

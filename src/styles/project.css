@@ -80,3 +80,9 @@
 @media (max-width: 370px) {
   .metrics-grid, .technical-snapshot { grid-template-columns: 1fr; }
 }
+
+.project-figure-link { display: block; background: #fff; }
+.project-figure-link:focus-visible { outline-offset: -4px; }
+.project-media img { max-height: 48rem; object-fit: contain; }
+.project-media figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.figure-size-hint { color: var(--accent); white-space: nowrap; }

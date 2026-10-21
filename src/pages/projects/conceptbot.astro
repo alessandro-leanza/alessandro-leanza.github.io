@@ -8,10 +8,10 @@ import MetricCard from '../../components/project/MetricCard.astro';
 import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
 import CitationBlock from '../../components/project/CitationBlock.astro';
 import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
-import { existsSync } from 'node:fs';
+import { publicAssetExists } from '../../utils/publicAsset';
 import { conceptbot, metrics, stages, snapshot, bibtex } from '../../data/conceptbot';
 const media = conceptbot.media;
-const socialImage = existsSync(`public${media.architecture}`) ? media.architecture : undefined;
+const socialImage = publicAssetExists(media.architecture) ? media.architecture : undefined;
 ---
 <ProjectLayout title={conceptbot.title} description={conceptbot.description} socialImage={socialImage}>
   <ProjectHero
@@ -23,7 +23,14 @@ const socialImage = existsSync(`public${media.architecture}`) ? media.architectu
     paper={conceptbot.paper}
     code={conceptbot.code}
   />
-  <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} />
+  <ProjectMedia
+    label="ConceptBot — project overview video"
+    image={media.architecture}
+    video={media.overview}
+    poster={media.poster}
+    muted={false}
+    loop={false}
+  />
 
   <section class="section project-section" aria-labelledby="problem-title">
     <SectionHeading id="problem-title" title="The problem" number="01" />
@@ -41,7 +48,7 @@ const socialImage = existsSync(`public${media.architecture}`) ? media.architectu
       <h3 id="risk-title">Risk-aware reasoning</h3>
       <p>ConceptBot can activate an interaction-aware Risk Index that estimates semantic risk for individual objects and object–object interactions. This information is used by URP when resolving the request; it is not a physics-based safety certificate or a replacement for low-level geometric and physical validation.</p>
     </aside>
-    <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} compact />
+    <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} alt="ConceptBot overview showing Object Properties Extraction, User Request Processing, and Planner modules connected to the user request and robot execution" compact />
   </section>
 
   <section class="section project-section" aria-labelledby="results-title">
@@ -54,7 +61,7 @@ const socialImage = existsSync(`public${media.architecture}`) ? media.architectu
   <section class="section project-section" aria-labelledby="grounding-title">
     <SectionHeading id="grounding-title" title="Why grounding matters" number="04" />
     <p class="project-lead">In a representative risk-sensitive task, the baseline places a bottle inside a ceramic bowl, creating a potential breakage risk. ConceptBot uses object-property and risk information through OPE and URP to construct a safer structured request, placing the bottle in front of the bowl instead.</p>
-    <ProjectMedia label="Risk-sensitive ConceptBot vs baseline example" image={media.qualitative} video={media.riskVideo} poster={media.poster} />
+    <ProjectMedia label="Risk-sensitive ConceptBot vs baseline example" image={media.qualitative} alt="OPE, URP, and Planner reasoning above a comparison of ConceptBot placing the bottle in front of the bowl and SayCan placing it inside" />
   </section>
 
   <section class="section project-section" aria-labelledby="deployment-title">
@@ -63,7 +70,7 @@ const socialImage = existsSync(`public${media.architecture}`) ? media.architectu
       <p>ConceptBot was integrated with both simulation and physical manipulation stacks. In simulation, representative tasks used a UR5e robot with a Robotiq 2F85 gripper in PyBullet, with CLIPort used for pick-and-place execution. Real-world trials used a Franka Emika Panda with an Intel RealSense D435 RGB-D camera, YOLOv8 object detection, and FrankaPy for execution.</p>
       <p>The deployment experiments were intentionally separated from the symbolic benchmark so that planning-policy correctness is not confused with end-to-end perception or control performance.</p>
     </div>
-    <ProjectMedia label="PyBullet and Franka deployment media" image={media.deployment} video={media.deploymentVideo} poster={media.poster} />
+    <ProjectMedia label="PyBullet and Franka deployment media" image={media.deployment} alt="PyBullet simulation sequences in the top row and Franka Emika Panda manipulation sequences in the bottom row" />
   </section>
 
   <section class="section project-section" aria-labelledby="technical-title">

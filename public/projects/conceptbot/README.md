@@ -1,21 +1,22 @@
 # ConceptBot media
 
-Drop verified media into this directory, then rebuild. No fake images are included.
-`src/data/conceptbot.ts` holds the paths. `ProjectMedia.astro` checks file presence
-at build time and renders a labelled placeholder until an asset is available.
+The uploaded assets are served from this directory. Paths are configured in
+`src/data/conceptbot.ts`. Rebuild after adding or replacing assets.
 
-- `architecture.webp`: architecture figure, used in the hero and approach sections;
-  also becomes the social preview image when present.
-- `qualitative-risk.webp`: risk-sensitive comparison image.
-- `deployment.webp`: simulation and physical deployment image.
-- `risk-demo.mp4`: optional risk-sensitive comparison video.
-- `deployment-demo.mp4`: optional deployment video.
-- `poster.webp`: required poster before either video is rendered. Separate posters
-  can be configured per media block when supplied.
+- `overview.mp4`: full project video below the hero (originally ConceptBot_video.mp4).
+- `poster.webp`: title frame extracted from the overview video at one second.
+- `architecture.png`: Figure 1, in Approach and as the social preview.
+- `qualitative-risk.png`: Figure 2, in Why grounding matters and project cards.
+- `deployment.png`: Figure 3, in Robot deployment.
 
-Videos take priority over images only when both the video and its poster exist.
-They have native controls, muted audio, loop, and playsinline. They start paused
-(no autoplay), including with prefers-reduced-motion. WebM is also supported:
-update the relevant path in src/data/conceptbot.ts to the supplied .webm filename.
-Provide meaningful project-specific alt text when changing media or reusing the
-component for another project. Caption any future video that includes speech.
+The two diagram PNGs are losslessly re-encoded: identical dimensions and RGBA
+pixels, with embedded diagram-editor metadata removed for faster downloads.
+Their original uploads remain available in Git history. The MP4 is remuxed with
+faststart for web playback without re-encoding its video or audio streams.
+
+The overview uses native controls, inline playback, and starts paused with audio
+available. It does not loop or autoplay, including with prefers-reduced-motion.
+The reusable ProjectMedia component also supports MP4/WebM clips, muted/loop
+options, and a labelled fallback when an image or a video/poster pair is missing.
+Images can be opened at full resolution, including on mobile. Provide verified
+captions as a WebVTT track if adding spoken narration that needs subtitles.

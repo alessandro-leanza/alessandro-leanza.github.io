@@ -1,18 +1,26 @@
 ---
 import ArrowIcon from './ArrowIcon.astro';
+import { publicAssetExists } from '../utils/publicAsset';
 
 interface Props {
   title: string;
   description: string;
   tags?: string[];
   href?: string;
+  image?: string;
+  imageAlt?: string;
 }
-const { title, description, tags = [], href } = Astro.props;
+const { title, description, tags = [], href, image, imageAlt = title } = Astro.props;
+const hasImage = publicAssetExists(image);
 ---
 <article class:list={['project-card', { 'project-card-linked': !!href }]}>
-  <div class="project-image" aria-label="Project image placeholder">
-    <span class="image-corner" aria-hidden="true"></span>
-    <span>Project image <span aria-hidden="true">/</span> placeholder</span>
+  <div class:list={['project-image', { 'project-image-has-media': hasImage }]}>
+    {hasImage ? (
+      <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+    ) : (
+      <><span class="image-corner" aria-hidden="true"></span>
+      <span>Project image <span aria-hidden="true">/</span> placeholder</span></>
+    )}
   </div>
   <div class="project-body">
     <h3>{href ? <a href={href} aria-label={`View ${title} project`}>{title}<ArrowIcon /></a> : title}</h3>

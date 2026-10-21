@@ -6,11 +6,10 @@ export const conceptbot = {
   paper: 'https://arxiv.org/abs/2509.00570',
   code: 'https://github.com/alessandro-leanza/ConceptBot',
   media: {
-    architecture: '/projects/conceptbot/architecture.webp',
-    qualitative: '/projects/conceptbot/qualitative-risk.webp',
-    deployment: '/projects/conceptbot/deployment.webp',
-    riskVideo: '/projects/conceptbot/risk-demo.mp4',
-    deploymentVideo: '/projects/conceptbot/deployment-demo.mp4',
+    architecture: '/projects/conceptbot/architecture.png',
+    qualitative: '/projects/conceptbot/qualitative-risk.png',
+    deployment: '/projects/conceptbot/deployment.png',
+    overview: '/projects/conceptbot/overview.mp4',
     poster: '/projects/conceptbot/poster.webp',
   },
 };

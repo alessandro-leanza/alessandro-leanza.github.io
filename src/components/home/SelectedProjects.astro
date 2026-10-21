@@ -2,6 +2,7 @@
 import SectionHeading from '../SectionHeading.astro';
 import ArrowIcon from '../ArrowIcon.astro';
 import ProjectCard from '../ProjectCard.astro';
+import { conceptbot } from '../../data/conceptbot';
 // Add href: '/projects/<slug>/' once a project's detail route exists.
 const projects = [
   {
@@ -9,6 +10,8 @@ const projects = [
     description: 'Knowledge-graph-grounded commonsense reasoning for LLM-based robot task planning.',
     tags: ['Knowledge Graphs', 'LLM Planning', 'Robot Planning'],
     href: '/projects/conceptbot/',
+    image: conceptbot.media.qualitative,
+    imageAlt: 'ConceptBot planning pipeline and robot execution compared with SayCan',
   },
   {
     title: 'Context-Aware Exoskeleton Assistance',
