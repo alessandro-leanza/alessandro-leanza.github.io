@@ -131,3 +131,11 @@ nav a:hover, nav a[aria-current='page'] { color: var(--accent); text-decoration:
 
 .project-image-has-media { padding: 0; display: block; background: #fff; }
 .project-image-has-media img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+/* Figure 2 has 49px of white space only on its right edge (2427px source).
+   Balance it with a proportional left inset in both figures and project cards. */
+.project-media img[src='/projects/conceptbot/qualitative-risk.png'],
+.project-image img[src='/projects/conceptbot/qualitative-risk.png'] {
+  padding-left: 1.98%;
+  background: #fff;
+}
