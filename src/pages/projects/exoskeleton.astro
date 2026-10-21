@@ -23,12 +23,15 @@ import { exoskeleton, exoskeletonStages, exoskeletonSnapshot, exoskeletonMetrics
   />
   <ProjectMedia label="Perception–control architecture" image={exoskeleton.media.architecture} alt="High-level perception passes visual grasp-state and payload cues to a finite-state machine and variable-admittance controller, which drives the back-support exoskeleton" />
 
-  <section class="section project-section" aria-labelledby="exoskeleton-problem">
-    <SectionHeading id="exoskeleton-problem" title="The problem" number="01" />
-    <div class="project-prose">
-      <p>During manual handling, useful support depends on both when assistance is activated and how it adapts to the task. Posture alone does not describe which object the user is attending to, whether it is being handled, or what load it introduces.</p>
-      <p>This project investigates how visual and gaze information can complement the signals available to a back-support exoskeleton, connecting scene understanding with physical assistance.</p>
+  <section class="section project-section exoskeleton-problem" aria-labelledby="exoskeleton-problem">
+    <div class="problem-copy">
+      <SectionHeading id="exoskeleton-problem" title="The problem" number="01" />
+      <div class="project-prose">
+        <p>During manual handling, useful support depends on both when assistance is activated and how it adapts to the task. Posture alone does not describe which object the user is attending to, whether it is being handled, or what load it introduces.</p>
+        <p>This project investigates how visual and gaze information can complement the signals available to a back-support exoskeleton, connecting scene understanding with physical assistance.</p>
+      </div>
     </div>
+    <ProjectMedia label="Back-support exoskeleton during the lifting task" image={exoskeleton.media.setup} alt="Participant handling a box while wearing the active back-support exoskeleton and Tobii eye-tracking glasses, with an inset showing the egocentric view and gaze point" size="small" />
   </section>
 
   <section class="section project-section" aria-labelledby="exoskeleton-approach">
@@ -57,7 +60,6 @@ import { exoskeleton, exoskeletonStages, exoskeletonSnapshot, exoskeletonMetrics
       <p>The controller blends trunk and payload compensation, ramps stiffness and damping between interaction profiles, and publishes telemetry for inspecting the system’s behaviour. The perception models and control settings are tied to the experimental setup; this overview makes no claim of general deployment performance.</p>
     </div>
     <TechnicalSnapshot entries={exoskeletonSnapshot} />
-    <ProjectMedia label="Back-support exoskeleton during the lifting task" image={exoskeleton.media.setup} alt="Participant handling a box while wearing the active back-support exoskeleton and Tobii eye-tracking glasses, with an inset showing the egocentric view and gaze point" size="small" />
   </section>
 
   <section class="section project-section" aria-labelledby="exoskeleton-resources">
@@ -71,3 +73,19 @@ import { exoskeleton, exoskeletonStages, exoskeletonSnapshot, exoskeletonMetrics
   </section>
   <ProjectNavigation />
 </ProjectLayout>
+
+<style>
+  .exoskeleton-problem {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+    align-items: start;
+    gap: 3rem;
+  }
+  .problem-copy { min-width: 0; }
+  .exoskeleton-problem :global(.project-media) { width: 100%; margin: 0; }
+
+  @media (max-width: 800px) {
+    .exoskeleton-problem { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .exoskeleton-problem :global(.project-media) { margin-inline: auto; }
+  }
+</style>
