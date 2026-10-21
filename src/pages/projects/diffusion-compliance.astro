@@ -4,10 +4,11 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import ProjectHero from '../../components/project/ProjectHero.astro';
 import ProjectPipeline from '../../components/project/ProjectPipeline.astro';
 import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
+import ProjectMedia from '../../components/project/ProjectMedia.astro';
 import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
 import { compliance, complianceStages, complianceSnapshot } from '../../data/compliance';
 ---
-<ProjectLayout title={compliance.title} description={compliance.description}>
+<ProjectLayout title={compliance.title} description={compliance.description} socialImage={compliance.tasks}>
   <ProjectHero
     eyebrow="ROBOT LEARNING / FORCE SENSING / COMPLIANT MANIPULATION"
     title={compliance.title}
@@ -15,6 +16,12 @@ import { compliance, complianceStages, complianceSnapshot } from '../../data/com
     publicationStatus="Work in progress · Unpublished research"
     intro="This project explores diffusion policies that learn how to move and how to yield during contact. Demonstrations include compliance commands alongside motion, while an external force/torque sensor closes a variable-admittance loop on a robot that exposes a velocity interface rather than joint-torque control."
     showCitation={false}
+  />
+
+  <ProjectMedia
+    image={compliance.tasks}
+    label="Real-robot task sequences from the work-in-progress manuscript: door opening (top), sustained sliding contact (middle), and insertion (bottom). Overlays show commanded stiffness K, damping ratio ζ and measured force F at selected instants; these are illustrative rollouts, not aggregate results."
+    alt="Three rows of seven robot photographs showing a small fridge door being opened, a grasped panel sliding in contact, and peg insertion, with stiffness, damping ratio and force overlays."
   />
 
   <section class="section project-section" aria-labelledby="compliance-problem">
@@ -27,6 +34,11 @@ import { compliance, complianceStages, complianceSnapshot } from '../../data/com
 
   <section class="section project-section" aria-labelledby="compliance-method">
     <SectionHeading id="compliance-method" title="From demonstration to deployment" number="02" />
+    <ProjectMedia
+      image="/projects/diffusion-compliance/architecture.png"
+      label="Conceptual deployment diagram: motion and compliance are predicted together. Wrist force/torque always feeds the admittance controller and additionally conditions the force-aware policy variants."
+      alt="RGB and robot state feed a diffusion policy that predicts motion, stiffness and damping for a variable-admittance controller. The controller sends Cartesian velocity to the arm. Wrist force/torque feeds the controller continuously, with a separate dashed path to force-conditioned policy variants."
+    />
     <ProjectPipeline stages={complianceStages} />
     <aside class="project-callout" aria-labelledby="compliance-force">
       <h3 id="compliance-force">Where force enters the system</h3>

@@ -3,6 +3,7 @@
 export const compliance = {
   title: 'Learning Compliance with Diffusion Policies',
   path: '/projects/diffusion-compliance/',
+  tasks: '/projects/diffusion-compliance/tasks.png',
   description: 'Work in progress: learning motion and compliance schedules from demonstrations, with force-aware diffusion policies and velocity-level admittance control.',
   tags: ['Diffusion policies', 'Force sensing', 'Variable admittance', 'Work in progress'],
 };
