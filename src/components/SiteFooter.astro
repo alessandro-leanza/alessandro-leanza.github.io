@@ -12,5 +12,5 @@ import { links } from '../data/links';
       <li><ProfileLink href={links.scholar} label="Google Scholar" /></li>
     </ul>
   </div>
-  <p class="link-note">* Contact, profile, and CV destinations are placeholders until verified links are provided.</p>
+  {Object.values(links).some(link => link === null) && <p class="link-note">* Contact, profile, and CV destinations are placeholders until verified links are provided.</p>}
 </footer>

@@ -1,7 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileLink from '../components/ProfileLink.astro';
+import { profile } from '../data/profile';
+import { links } from '../data/links';
 ---
-<BaseLayout title="About">
+<BaseLayout title="About" description="Research background and education of Alessandro Leanza, PhD candidate in Informatics at IDSIA USI–SUPSI.">
   <h1>About</h1>
-  <p class="placeholder">Placeholder: about content will be added here.</p>
+  <div class="page-copy">
+    <p>{profile.intro}</p>
+    <p>{profile.practice}</p>
+    <h2>Education</h2>
+    <dl class="education-list">
+      {profile.education.map(entry => (
+        <div>
+          <dt>{entry.degree}</dt>
+          <dd>{entry.institution}<span>{entry.period}</span></dd>
+        </div>
+      ))}
+    </dl>
+    <div class="profile-actions">
+      <ProfileLink href={links.cv} label="CV (PDF)" />
+      <ProfileLink href={links.email} label="Email" />
+      <ProfileLink href={links.scholar} label="Google Scholar" />
+    </div>
+  </div>
 </BaseLayout>

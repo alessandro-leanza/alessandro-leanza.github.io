@@ -139,3 +139,19 @@ nav a:hover, nav a[aria-current='page'] { color: var(--accent); text-decoration:
   padding-left: 1.98%;
   background: #fff;
 }
+
+/* Verified profile and publication content shares the existing typography. */
+.about-content .about-intro { color: var(--muted); margin-block: 0.75rem 1.5rem; }
+.publication-list h3 a { color: var(--text); text-decoration: none; }
+.publication-list h3 a:hover { color: var(--accent); text-decoration: underline; }
+.publication-list .publication-status { color: var(--accent); }
+.publication-links, .profile-actions { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; font-size: 0.8rem; margin-top: 1rem; }
+.publications-intro { color: var(--muted); margin-bottom: 2rem; }
+.page-copy { max-width: 48rem; color: var(--muted); }
+.page-copy > p + p { margin-top: 1rem; }
+.page-copy h2 { margin-top: 2.5rem; color: var(--text); }
+.education-list { margin: 1.25rem 0 0; }
+.education-list > div { padding-block: 1rem; border-top: 1px solid var(--border); }
+.education-list dt { color: var(--text); font-weight: 500; }
+.education-list dd { margin: 0.4rem 0 0; font-size: 0.85rem; }
+.education-list dd span { display: block; font-size: 0.8rem; margin-top: 0.2rem; }

@@ -14,5 +14,5 @@ import { links } from '../../data/links';
     <ProfileLink class="action-link" href={links.cv} label="CV" />
     <ProfileLink class="action-link" href={links.github} label="GitHub" />
   </div>
-  <p class="link-note">* Profile and CV links are placeholders.</p>
+  {(links.cv === null || links.github === null) && <p class="link-note">* Profile and CV links are placeholders.</p>}
 </section>

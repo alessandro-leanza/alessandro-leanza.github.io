@@ -1,8 +1,8 @@
-// Add verified destinations here when available. Null renders an explicit placeholder.
+// Verified profile URLs from the supplied CV; work email confirmed by Alessandro.
 export const links: Record<'cv' | 'github' | 'linkedin' | 'scholar' | 'email', string | null> = {
-  cv: null,
-  github: null,
-  linkedin: null,
-  scholar: null,
-  email: null,
+  cv: '/cv/alessandro-leanza-cv.pdf',
+  github: 'https://github.com/alessandro-leanza',
+  linkedin: 'https://linkedin.com/in/alessandro-leanza',
+  scholar: 'https://scholar.google.com/citations?user=nwhjilQAAAAJ&hl=it',
+  email: 'mailto:alessandro.leanza@supsi.ch',
 };

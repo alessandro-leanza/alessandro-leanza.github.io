@@ -1,7 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationList from '../components/PublicationList.astro';
+import ProfileLink from '../components/ProfileLink.astro';
+import { links } from '../data/links';
 ---
-<BaseLayout title="Publications">
+<BaseLayout title="Publications" description="Selected research publications by Alessandro Leanza, with paper, project, and code links.">
   <h1>Publications</h1>
-  <p class="placeholder">Placeholder: publications content will be added here.</p>
+  <p class="publications-intro">Selected work. See <ProfileLink href={links.scholar} label="Google Scholar" /> for additional publications.</p>
+  <PublicationList />
 </BaseLayout>

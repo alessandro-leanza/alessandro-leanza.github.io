@@ -25,7 +25,10 @@ npm run preview # Serve the production build locally
 - `src/layouts/BaseLayout.astro`: shared document, navigation, and page title.
 - `src/components/home/`: reusable homepage sections.
 - `src/components/`: shared navigation, footer, cards, and publication list.
-- `src/data/links.ts`: verified CV and profile destinations (currently `null` placeholders).
+- `src/data/links.ts`: verified CV, work email, and profile destinations.
+- `src/data/profile.ts`: CV-derived biography and education.
+- `src/data/publications.ts`: selected publications with verified metadata.
+- `public/cv/alessandro-leanza-cv.pdf`: public CV, served without modifying the supplied PDF.
 - `src/styles/global.css`: shared design tokens, responsive layout, and global styles.
 - `astro.config.mjs`: static output and canonical site URL.
 
@@ -47,8 +50,8 @@ Set verified destinations in `src/data/links.ts`; missing destinations render as
 marked, non-clickable placeholders. Email destinations should use `mailto:`.
 Project data lives in `src/components/home/SelectedProjects.astro`. Project cards
 accept an optional `href`; add it when the matching `/projects/<slug>/` route exists.
-Replace the labeled image areas, publication entries, and biography placeholder
-with verified content when available. Typography uses locally available sans-serif
+Update profile and publication data in `src/data/` when new verified content is
+available. Replace project image placeholders as real media are supplied. Typography uses locally available sans-serif
 fonts; no remote font or client-side JavaScript is required.
 
 ## Research project pages
