@@ -18,6 +18,8 @@ const socialImage = publicAssetExists(media.architecture) ? media.architecture :
     eyebrow="LLM PLANNING / KNOWLEDGE GRAPHS / ROBOTICS"
     title={conceptbot.title}
     subtitle={conceptbot.subtitle}
+    publicationStatus={conceptbot.publicationStatus}
+    publicationVenueUrl={conceptbot.publicationVenueUrl}
     intro="ConceptBot is a modular robot-planning framework that combines large language model reasoning with commonsense knowledge from ConceptNet. It enriches detected objects with task-relevant semantic properties, resolves ambiguous or implicit user requests, and grounds the resulting intent into scene-valid pick-and-place policies."
     authors={conceptbot.authors}
     paper={conceptbot.paper}
@@ -98,6 +100,8 @@ const socialImage = publicAssetExists(media.architecture) ? media.architecture :
     <div class="project-publication">
       <h3>ConceptBot: {conceptbot.subtitle}</h3>
       <p class="project-authors">{conceptbot.authors.join(', ')}</p>
+      <p class="project-publication-status"><a href={conceptbot.publicationVenueUrl}>{conceptbot.publicationStatus}</a></p>
+      <p class="project-note">The arXiv preprint is available below; the citation will be updated when the final publication metadata become available.</p>
       <div class="publication-actions"><a class="text-link" href={conceptbot.paper}>Paper</a><a class="text-link" href={conceptbot.code}>Code</a></div>
     </div>
     <CitationBlock bibtex={bibtex} />

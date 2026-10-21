@@ -4,6 +4,8 @@
 .project-hero h1 { margin-block: 1rem 0.7rem; font-size: clamp(2.6rem, 6vw, 3.8rem); }
 .project-subtitle { max-width: 44rem; font-size: clamp(1.15rem, 2.5vw, 1.6rem); line-height: 1.45; letter-spacing: -0.025em; }
 .project-intro { max-width: 50rem; margin-top: 1.5rem; color: var(--muted); font-size: 1rem; line-height: 1.8; }
+.project-publication-status { margin-top: 1rem; color: var(--accent); font-size: 0.85rem; font-weight: 500; }
+.project-publication-status + .project-note { margin-top: 0.5rem; }
 .project-authors { margin-top: 1.3rem; font-size: 0.8rem; line-height: 1.8; color: var(--muted); }
 .project-hero .hero-actions { margin-top: 1.5rem; gap: 0.8rem 1.25rem; }
 .project-section .section-heading { margin-bottom: 1.5rem; }

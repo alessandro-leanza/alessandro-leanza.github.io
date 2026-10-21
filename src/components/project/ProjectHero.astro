@@ -3,17 +3,20 @@ interface Props {
   eyebrow: string;
   title: string;
   subtitle: string;
+  publicationStatus?: string;
+  publicationVenueUrl?: string;
   intro: string;
   authors: string[];
   paper: string;
   code: string;
 }
-const { eyebrow, title, subtitle, intro, authors, paper, code } = Astro.props;
+const { eyebrow, title, subtitle, publicationStatus, publicationVenueUrl, intro, authors, paper, code } = Astro.props;
 ---
 <header class="project-hero">
   <p class="eyebrow">{eyebrow}</p>
   <h1>{title}</h1>
   <p class="project-subtitle">{subtitle}</p>
+  {publicationStatus && <p class="project-publication-status">{publicationVenueUrl ? <a href={publicationVenueUrl}>{publicationStatus}</a> : publicationStatus}</p>}
   <p class="project-intro">{intro}</p>
   <p class="project-authors"><span class="sr-only">Authors: </span>{authors.join(' · ')}</p>
   <div class="hero-actions">

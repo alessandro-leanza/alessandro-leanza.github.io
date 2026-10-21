@@ -1,5 +1,7 @@
 export const conceptbot = {
   title: 'ConceptBot',
+  publicationStatus: 'Accepted for publication in Biomimetic Intelligence and Robotics (BIROB).',
+  publicationVenueUrl: 'https://www.sciencedirect.com/journal/biomimetic-intelligence-and-robotics',
   subtitle: 'Knowledge-Graph–Grounded Commonsense for Task Decomposition in LLM Robot Planning',
   description: 'ConceptBot is a knowledge-graph-grounded LLM framework for commonsense, ambiguity-aware, and risk-aware robot task planning.',
   authors: ['Alessandro Leanza', 'Angelo Moroncelli', 'Giuseppe Vizzari', 'Francesco Braghin', 'Loris Roveda', 'Blerina Spahiu'],
