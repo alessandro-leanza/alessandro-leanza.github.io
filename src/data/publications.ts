@@ -14,6 +14,15 @@ export interface Publication {
 // List only publications with verified titles and metadata.
 export const selectedPublications: Publication[] = [
   {
+    title: `${conceptbot.title}: ${conceptbot.subtitle}`,
+    authors: conceptbot.authors,
+    status: conceptbot.publicationStatus,
+    citationLabel: '2026 · final journal citation pending',
+    paper: conceptbot.paper,
+    project: '/projects/conceptbot/',
+    code: conceptbot.code,
+  },
+  {
     title: graphrag.paperTitle,
     authors: graphrag.authors,
     status: graphrag.publicationStatus,
@@ -21,14 +30,5 @@ export const selectedPublications: Publication[] = [
     paper: graphrag.paper,
     project: '/projects/graphrag/',
     code: graphrag.code,
-  },
-  {
-    title: `${conceptbot.title}: ${conceptbot.subtitle}`,
-    authors: conceptbot.authors,
-    status: conceptbot.publicationStatus,
-    citationLabel: 'arXiv preprint · 2025',
-    paper: conceptbot.paper,
-    project: '/projects/conceptbot/',
-    code: conceptbot.code,
   },
 ];
