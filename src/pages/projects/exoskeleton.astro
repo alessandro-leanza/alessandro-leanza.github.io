@@ -3,11 +3,14 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import ProjectHero from '../../components/project/ProjectHero.astro';
 import ProjectPipeline from '../../components/project/ProjectPipeline.astro';
+import ProjectMedia from '../../components/project/ProjectMedia.astro';
+import MetricCard from '../../components/project/MetricCard.astro';
 import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
 import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
-import { exoskeleton, exoskeletonStages, exoskeletonSnapshot } from '../../data/exoskeleton';
+import { publicAssetExists } from '../../utils/publicAsset';
+import { exoskeleton, exoskeletonStages, exoskeletonSnapshot, exoskeletonMetrics } from '../../data/exoskeleton';
 ---
-<ProjectLayout title={exoskeleton.title} description={exoskeleton.description}>
+<ProjectLayout title={exoskeleton.title} description={exoskeleton.description} socialImage={publicAssetExists(exoskeleton.media.architecture) ? exoskeleton.media.architecture : undefined}>
   <ProjectHero
     eyebrow="MULTIMODAL PERCEPTION / ADAPTIVE CONTROL / WEARABLE ROBOTICS"
     title={exoskeleton.title}
@@ -18,6 +21,7 @@ import { exoskeleton, exoskeletonStages, exoskeletonSnapshot } from '../../data/
     code={exoskeleton.code}
     showCitation={false}
   />
+  <ProjectMedia label="Perception–control architecture" image={exoskeleton.media.architecture} alt="High-level perception passes visual grasp-state and payload cues to a finite-state machine and variable-admittance controller, which drives the back-support exoskeleton" />
 
   <section class="section project-section" aria-labelledby="exoskeleton-problem">
     <SectionHeading id="exoskeleton-problem" title="The problem" number="01" />
@@ -30,20 +34,36 @@ import { exoskeleton, exoskeletonStages, exoskeletonSnapshot } from '../../data/
   <section class="section project-section" aria-labelledby="exoskeleton-approach">
     <SectionHeading id="exoskeleton-approach" title="Approach" number="02" />
     <ProjectPipeline stages={exoskeletonStages} />
+    <aside class="project-callout" aria-labelledby="exoskeleton-semantic-context">
+      <h3 id="exoskeleton-semantic-context">Semantic context without blocking assistance</h3>
+      <p>In the experimental framework, gaze-based object selection initiates payload estimation before manipulation. VLM inference runs asynchronously, while visual grasp-state cues drive the time-critical assistance gate.</p>
+    </aside>
+  </section>
+
+  <section class="section project-section" aria-labelledby="exoskeleton-results">
+    <SectionHeading id="exoskeleton-results" title="Selected experimental results" number="03" />
+    <p class="project-lead">Controlled stooping and lifting experiments evaluated assistance timing, perceived interaction quality, and muscular activation. These are separate evaluations: a single-participant gaze ablation, a 15-participant questionnaire study, and a preliminary 5-participant EMG study.</p>
+    <div class="metrics-grid metrics-grid-three">{exoskeletonMetrics.map(metric => <MetricCard {...metric} />)}</div>
+    <div class="project-prose results-qualification">
+      <p>The gaze ablation used 50 randomized trials per condition. Mean onset delay was 0.066 ± 0.033 s with gaze and 1.892 ± 0.040 s without gaze, a mean anticipation of 1.826 s. The reference event was the first YOLO detection of the object as grasped, rather than a direct measurement of physical load transfer.</p>
+      <p>The questionnaire compared vision-gated assistance, posture-only assistance, and no exoskeleton. The preliminary EMG comparison evaluated loaded lifting with the complete vision-enabled system against no exoskeleton. It did not include a posture-only EMG condition, so the muscular-activation reductions cannot be attributed independently to gaze or vision gating.</p>
+    </div>
   </section>
 
   <section class="section project-section" aria-labelledby="exoskeleton-implementation">
-    <SectionHeading id="exoskeleton-implementation" title="Implementation" number="03" />
+    <SectionHeading id="exoskeleton-implementation" title="Implementation" number="04" />
     <div class="project-prose">
       <p>The public code integrates the Tobii perception application, a Moteus motor-controller node, and a ROS 2 admittance controller. Perception cues and joint-state information inform a finite-state assistance policy for pick-and-place handling.</p>
       <p>The controller blends trunk and payload compensation, ramps stiffness and damping between interaction profiles, and publishes telemetry for inspecting the system’s behaviour. The perception models and control settings are tied to the experimental setup; this overview makes no claim of general deployment performance.</p>
     </div>
     <TechnicalSnapshot entries={exoskeletonSnapshot} />
+    <ProjectMedia label="Back-support exoskeleton during the lifting task" image={exoskeleton.media.setup} alt="Participant handling a box while wearing the active back-support exoskeleton and Tobii eye-tracking glasses, with an inset showing the egocentric view and gaze point" size="small" />
   </section>
 
   <section class="section project-section" aria-labelledby="exoskeleton-resources">
-    <SectionHeading id="exoskeleton-resources" title="Resources" number="04" />
+    <SectionHeading id="exoskeleton-resources" title="Resources" number="05" />
     <p class="project-lead">Explore the public control stack and the earlier arXiv preprint for further context.</p>
+    <p class="project-note">The linked preprint is an earlier version and may not include all figures or experimental results summarized on this page.</p>
     <div class="publication-actions">
       <a class="text-link" href={exoskeleton.preprint}>Earlier preprint (arXiv)</a>
       <a class="text-link" href={exoskeleton.code}>Code on GitHub</a>

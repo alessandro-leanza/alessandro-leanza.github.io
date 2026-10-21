@@ -70,9 +70,13 @@ BibTeX is selectable without JavaScript, with an enhanced copy button when the
 Clipboard API is available.
 
 The exoskeleton overview is available at `/projects/exoskeleton/`, with shared
-content in `src/data/exoskeleton.ts`. Its description is based on the public
-Exoskeleton repository, with the earlier arXiv preprint linked from the supplied
-CV. The review manuscript, new experimental results, author list, and submission
-venue are not published by this page. No conference policy is asserted.
+content in `src/data/exoskeleton.ts`. It combines a public-code overview with
+figures and selected experimental results from the supplied manuscript, as
+authorized by Alessandro. The earlier arXiv preprint is linked from the supplied
+CV and is explicitly distinguished from the later results. Study populations,
+baselines, and limitations accompany the results. The manuscript PDF, author list,
+and submission venue are not published by this page. No conference policy is
+asserted. See `public/projects/exoskeleton/README.md` for asset provenance and
+the matching project-repository paths.
 The shared project hero supports optional authors, a custom paper-link label,
 and hiding the citation link when no citation section is provided.
