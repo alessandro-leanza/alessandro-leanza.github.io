@@ -1,0 +1,83 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectHero from '../../components/project/ProjectHero.astro';
+import ProjectMedia from '../../components/project/ProjectMedia.astro';
+import ProjectPipeline from '../../components/project/ProjectPipeline.astro';
+import MetricCard from '../../components/project/MetricCard.astro';
+import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
+import CitationBlock from '../../components/project/CitationBlock.astro';
+import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
+import { publicAssetExists } from '../../utils/publicAsset';
+import { graphrag, graphragMetrics, graphragStages, graphragSnapshot, graphragBibtex } from '../../data/graphrag';
+---
+<ProjectLayout title={graphrag.title} description={graphrag.description} socialImage={publicAssetExists(graphrag.architecture) ? graphrag.architecture : undefined}>
+  <ProjectHero
+    eyebrow="LOCAL LLMs / GRAPH RETRIEVAL / ROBOT PLANNING"
+    title={graphrag.title}
+    subtitle={graphrag.paperTitle}
+    publicationStatus={graphrag.publicationStatus}
+    intro="A fully local task-planning framework that turns object-associated text into a persistent knowledge graph with provenance. It retrieves a compact, scene- and task-relevant subgraph, then uses that evidence to guide a local LLM toward grounded JSON subgoals."
+    authors={graphrag.authors}
+    paper={graphrag.paper}
+    code={graphrag.code}
+  />
+  <ProjectMedia label="Provenance-aware graph planning architecture" image={graphrag.architecture} alt="Object-associated text is converted into evidence-linked facts, retrieved as a task-relevant subgraph, and passed to a constrained local LLM planner" />
+
+  <section class="section project-section" aria-labelledby="graphrag-problem">
+    <SectionHeading id="graphrag-problem" title="The problem" number="01" />
+    <div class="project-prose">
+      <p>LLM planners can reference objects or actions that are unavailable, or make unsupported assumptions about materials, hazards, and affordances. A transient prompt does not provide a reusable record of what the system knows or where that knowledge came from.</p>
+      <p>This project builds an inspectable, object-centric memory from scene-associated evidence and retrieves only the context needed for the current instruction.</p>
+    </div>
+  </section>
+
+  <section class="section project-section" aria-labelledby="graphrag-approach">
+    <SectionHeading id="graphrag-approach" title="Approach" number="02" />
+    <ProjectPipeline stages={graphragStages} />
+    <aside class="project-callout" aria-labelledby="graphrag-provenance">
+      <h3 id="graphrag-provenance">Evidence stays attached to the facts</h3>
+      <p>Facts carry source metadata, confidence, and links to evidence chunks. Knowledge can be reused across episodes and updated as objects appear. The prototype uses Wikipedia text; the representation also supports manuals and user notes. Model-derived fallback facts are distinguished from sourced facts.</p>
+    </aside>
+  </section>
+
+  <section class="section project-section" aria-labelledby="graphrag-results">
+    <SectionHeading id="graphrag-results" title="Key results" number="03" />
+    <p class="project-lead">The manuscript compares task decomposition across six categories from the ConceptBot task suite. The selected results below are reported symbolic planning outcomes, not physical robot task-success rates.</p>
+    <div class="metrics-grid">{graphragMetrics.map(metric => <MetricCard {...metric} />)}</div>
+    <p class="project-note results-qualification">GraphRAG improves on full ConceptBot in Materials and Toxicity; full ConceptBot remains slightly stronger on Implicit and Risk-Aware tasks. These results do not establish grasping, collision avoidance, placement stability, or controller robustness.</p>
+    <aside class="project-callout" aria-labelledby="graphrag-runtime">
+      <h3 id="graphrag-runtime">Persistent memory reduces repeated enrichment</h3>
+      <p>In the profiled 5- and 10-object scenes, warm KG updates took 0.02–0.03 seconds and retrieval took 0.01–0.04 seconds. These are means over three runs with cached Wikipedia documents and GPU-local Qwen models on an NVIDIA RTX 5090; they are not end-to-end real-time guarantees. Cold KG construction took 16.42 and 28.65 seconds for the two scene sizes.</p>
+    </aside>
+  </section>
+
+  <section class="section project-section" aria-labelledby="graphrag-scope">
+    <SectionHeading id="graphrag-scope" title="Scope and limitations" number="04" />
+    <div class="project-prose">
+      <p>The framework operates at the semantic/task-decomposition layer. Restricted action templates reduce unsupported outputs, but do not replace reachability, graspability, geometric, or interaction-risk checks in downstream robot skills.</p>
+      <p>Knowledge coverage matters: unresolved object names, missing sources, and broad material or toxicity descriptions can still lead to incorrect plans. Provenance makes those dependencies inspectable; it does not certify the facts or guarantee safe execution.</p>
+    </div>
+  </section>
+
+  <section class="section project-section" aria-labelledby="graphrag-technical">
+    <SectionHeading id="graphrag-technical" title="Technical snapshot" number="05" />
+    <TechnicalSnapshot entries={graphragSnapshot} />
+  </section>
+
+  <section class="section project-section" aria-labelledby="graphrag-publication">
+    <SectionHeading id="graphrag-publication" title="Publication" number="06" />
+    <div class="project-publication">
+      <h3>{graphrag.paperTitle}</h3>
+      <p class="project-authors">{graphrag.authors.join(', ')}</p>
+      <p class="project-publication-status">{graphrag.publicationStatus}</p>
+      <p class="project-note">Paper ID 25. The proceedings are forthcoming; final bibliographic metadata and DOI will be added when available. No arXiv version is currently linked.</p>
+      <div class="publication-actions">
+        {graphrag.paper && <a class="text-link" href={graphrag.paper}>Paper</a>}
+        <a class="text-link" href={graphrag.code}>Code</a>
+      </div>
+    </div>
+    <CitationBlock bibtex={graphragBibtex} label="BibTeX — provisional citation" note="This is a provisional author/title citation for an accepted, forthcoming paper. It is not the final Springer citation; no DOI, page range, or formal volume title is asserted." />
+  </section>
+  <ProjectNavigation />
+</ProjectLayout>

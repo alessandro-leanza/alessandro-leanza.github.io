@@ -3,6 +3,7 @@ import SectionHeading from '../SectionHeading.astro';
 import ArrowIcon from '../ArrowIcon.astro';
 import ProjectCard from '../ProjectCard.astro';
 import { conceptbot } from '../../data/conceptbot';
+import { graphrag } from '../../data/graphrag';
 // Add href: '/projects/<slug>/' once a project's detail route exists.
 const projects = [
   {
@@ -22,6 +23,9 @@ const projects = [
     title: 'Graph-Based RAG for Robot Planning',
     description: 'Local, provenance-aware retrieval and knowledge graphs for grounded robot task decomposition.',
     tags: ['RAG', 'Knowledge graphs'],
+    href: '/projects/graphrag/',
+    image: graphrag.architecture,
+    imageAlt: 'Provenance-aware graph construction, retrieval, and local robot task planning',
   },
   {
     title: 'Learning Compliance with Diffusion Policies',

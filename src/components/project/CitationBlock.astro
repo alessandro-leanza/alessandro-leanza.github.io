@@ -1,14 +1,22 @@
 ---
-interface Props { bibtex: string; }
-const { bibtex } = Astro.props;
+interface Props {
+  bibtex: string;
+  label?: string;
+  note?: string;
+}
+const {
+  bibtex,
+  label = 'BibTeX — arXiv preprint',
+  note = 'This is the arXiv/preprint citation; it can be replaced with final publication metadata when available.',
+} = Astro.props;
 ---
 <div class="citation-block" id="citation">
   <div class="citation-heading">
-    <h3>BibTeX — arXiv preprint</h3>
+    <h3>{label}</h3>
     <button class="button copy-citation" type="button" hidden>Copy BibTeX</button>
     <span class="sr-only copy-status" role="status"></span>
   </div>
-  <p class="project-note">This is the arXiv/preprint citation; it can be replaced with final publication metadata when available.</p>
+  <p class="project-note">{note}</p>
   <pre tabindex="0" aria-label="BibTeX citation"><code>{bibtex}</code></pre>
 </div>
 <script>

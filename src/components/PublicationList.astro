@@ -10,12 +10,12 @@ const { publications = selectedPublications } = Astro.props;
     <li>
       <span class="publication-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
       <div>
-        <h3><a href={publication.paper}>{publication.title}</a></h3>
+        <h3>{publication.paper ? <a href={publication.paper}>{publication.title}</a> : publication.title}</h3>
         <p>{publication.authors.join(', ')}</p>
         <p class="publication-status">{publication.status}</p>
         <p>{publication.citationLabel}</p>
         <div class="publication-links">
-          <a href={publication.paper}>Paper</a>
+          {publication.paper && <a href={publication.paper}>Paper</a>}
           {publication.project && <a href={publication.project}>Project</a>}
           {publication.code && <a href={publication.code}>Code</a>}
         </div>
