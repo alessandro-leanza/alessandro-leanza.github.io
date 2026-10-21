@@ -48,7 +48,7 @@ const socialImage = publicAssetExists(media.architecture) ? media.architecture :
       <h3 id="risk-title">Risk-aware reasoning</h3>
       <p>ConceptBot can activate an interaction-aware Risk Index that estimates semantic risk for individual objects and object–object interactions. This information is used by URP when resolving the request; it is not a physics-based safety certificate or a replacement for low-level geometric and physical validation.</p>
     </aside>
-    <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} alt="ConceptBot overview showing Object Properties Extraction, User Request Processing, and Planner modules connected to the user request and robot execution" compact />
+    <ProjectMedia label="ConceptBot architecture figure" image={media.architecture} alt="ConceptBot overview showing Object Properties Extraction, User Request Processing, and Planner modules connected to the user request and robot execution" compact size="small" />
   </section>
 
   <section class="section project-section" aria-labelledby="results-title">
@@ -70,7 +70,7 @@ const socialImage = publicAssetExists(media.architecture) ? media.architecture :
       <p>ConceptBot was integrated with both simulation and physical manipulation stacks. In simulation, representative tasks used a UR5e robot with a Robotiq 2F85 gripper in PyBullet, with CLIPort used for pick-and-place execution. Real-world trials used a Franka Emika Panda with an Intel RealSense D435 RGB-D camera, YOLOv8 object detection, and FrankaPy for execution.</p>
       <p>The deployment experiments were intentionally separated from the symbolic benchmark so that planning-policy correctness is not confused with end-to-end perception or control performance.</p>
     </div>
-    <ProjectMedia label="PyBullet and Franka deployment media" image={media.deployment} alt="PyBullet simulation sequences in the top row and Franka Emika Panda manipulation sequences in the bottom row" />
+    <ProjectMedia label="PyBullet and Franka deployment media" image={media.deployment} alt="PyBullet simulation sequences in the top row and Franka Emika Panda manipulation sequences in the bottom row" size="medium" />
   </section>
 
   <section class="section project-section" aria-labelledby="technical-title">

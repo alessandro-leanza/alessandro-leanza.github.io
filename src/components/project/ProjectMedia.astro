@@ -7,14 +7,15 @@ interface Props {
   poster?: string;
   alt?: string;
   compact?: boolean;
+  size?: 'full' | 'medium' | 'small';
   muted?: boolean;
   loop?: boolean;
 }
-const { label, image, video, poster, alt = label, compact = false, muted = true, loop = true } = Astro.props;
+const { label, image, video, poster, alt = label, compact = false, size = 'full', muted = true, loop = true } = Astro.props;
 const hasVideo = publicAssetExists(video) && /\.(mp4|webm)$/i.test(video!) && publicAssetExists(poster);
 const hasImage = publicAssetExists(image);
 ---
-<figure class:list={['project-media', { 'project-media-compact': compact }]}>
+<figure class:list={['project-media', `project-media-${size}`, { 'project-media-compact': compact }]}>
   {hasVideo ? (
     <video controls muted={muted} loop={loop} playsinline preload="none" poster={poster} aria-label={alt}>
       <source src={video} type={video!.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />

@@ -81,6 +81,10 @@
   .metrics-grid, .technical-snapshot { grid-template-columns: 1fr; }
 }
 
+/* Limit selected figures on wide screens while preserving full mobile width. */
+.project-media-small { max-width: 40rem; margin-inline: auto; }
+.project-media-medium { max-width: 50rem; margin-inline: auto; }
+
 .project-figure-link { display: block; background: #fff; }
 .project-figure-link:focus-visible { outline-offset: -4px; }
 .project-media img { max-height: 48rem; object-fit: contain; }
