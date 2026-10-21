@@ -1,0 +1,60 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectHero from '../../components/project/ProjectHero.astro';
+import ProjectPipeline from '../../components/project/ProjectPipeline.astro';
+import TechnicalSnapshot from '../../components/project/TechnicalSnapshot.astro';
+import ProjectNavigation from '../../components/project/ProjectNavigation.astro';
+import { compliance, complianceStages, complianceSnapshot } from '../../data/compliance';
+---
+<ProjectLayout title={compliance.title} description={compliance.description}>
+  <ProjectHero
+    eyebrow="ROBOT LEARNING / FORCE SENSING / COMPLIANT MANIPULATION"
+    title={compliance.title}
+    subtitle="Learning motion, stiffness and damping for contact-rich manipulation on an industrial arm."
+    publicationStatus="Work in progress · Unpublished research"
+    intro="This project explores diffusion policies that learn how to move and how to yield during contact. Demonstrations include compliance commands alongside motion, while an external force/torque sensor closes a variable-admittance loop on a robot that exposes a velocity interface rather than joint-torque control."
+    showCitation={false}
+  />
+
+  <section class="section project-section" aria-labelledby="compliance-problem">
+    <SectionHeading id="compliance-problem" title="Why learn compliance?" number="01" />
+    <div class="project-prose">
+      <p>Contact-rich tasks require more than a geometric trajectory. A robot may need to stay stiff during a pull, yield as a part engages, or soften when a constraint changes. Choosing one fixed stiffness for an entire task can miss these different phases.</p>
+      <p>The goal is to make compliance part of the demonstrated action, so a policy can learn a task-dependent schedule instead of relying only on manually tuned gains. A shared control interface keeps demonstration and deployment on the same underlying robot dynamics.</p>
+    </div>
+  </section>
+
+  <section class="section project-section" aria-labelledby="compliance-method">
+    <SectionHeading id="compliance-method" title="From demonstration to deployment" number="02" />
+    <ProjectPipeline stages={complianceStages} />
+    <aside class="project-callout" aria-labelledby="compliance-force">
+      <h3 id="compliance-force">Where force enters the system</h3>
+      <p>Force has two distinct roles. The wrist wrench always feeds the fast admittance controller, which renders compliant interaction. In force-conditioned diffusion variants, it also enters the learned policy as an observation. The policy predicts motion and compliance parameters; it does not directly issue joint torques or a desired contact-force action.</p>
+    </aside>
+  </section>
+
+  <section class="section project-section" aria-labelledby="compliance-setup">
+    <SectionHeading id="compliance-setup" title="Experimental setup" number="03" />
+    <TechnicalSnapshot entries={complianceSnapshot} />
+    <p class="project-note">The rates above are nominal targets. Diffusion inference introduces chunk-boundary delays, so the policy publication rate should not be read as a sustained 50 Hz guarantee. The independent admittance loop continues running between policy updates.</p>
+  </section>
+
+  <section class="section project-section" aria-labelledby="compliance-evidence">
+    <SectionHeading id="compliance-evidence" title="Evaluation in progress" number="04" />
+    <div class="project-prose">
+      <p>The current investigation compares learned schedules with and without wrench observations, an online fuzzy scheduler, and fixed-stiffness baselines. Contact impulse, peak force and task success are used to study the trade-offs.</p>
+      <p>Preliminary sliding-contact experiments do not show a learned policy consistently outperforming the tuned baselines. They also do not establish a benefit from adding force to the policy observation in this repeatable-contact setting. The force sensor remains necessary for the underlying admittance controller in both variants.</p>
+      <p>Door opening and insertion broaden the task examples, but the detailed audit currently covers one sliding-contact task with small trial counts. Behaviour under unexpected contact and generalisation beyond these conditions remain open questions.</p>
+    </div>
+  </section>
+
+  <section class="section project-section" aria-labelledby="compliance-status">
+    <SectionHeading id="compliance-status" title="Current status" number="05" />
+    <div class="project-prose">
+      <p>This is ongoing, unpublished work. The experimental setup, policy variants and evaluation are still being refined; this overview describes the current direction rather than a final paper or release.</p>
+      <p>Further work includes inference and action-publication timing, stale-command handling, and measuring the effort of collecting demonstrations against tuning a task-specific controller. Current experiments are supervised laboratory trials.</p>
+    </div>
+  </section>
+  <ProjectNavigation />
+</ProjectLayout>

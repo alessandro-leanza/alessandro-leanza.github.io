@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { conceptbot } from '../data/conceptbot';
 import { graphrag } from '../data/graphrag';
+import { compliance } from '../data/compliance';
 import { exoskeleton } from '../data/exoskeleton';
 ---
 <BaseLayout title="Projects">
@@ -31,6 +32,12 @@ import { exoskeleton } from '../data/exoskeleton';
       href="/projects/graphrag/"
       image={graphrag.architecture}
       imageAlt="Provenance-aware graph construction, retrieval, and local robot task planning"
+    />
+    <ProjectCard
+      title={compliance.title}
+      description={compliance.description}
+      tags={compliance.tags}
+      href={compliance.path}
     />
   </div>
 </BaseLayout>

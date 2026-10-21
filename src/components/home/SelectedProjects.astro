@@ -4,6 +4,7 @@ import ArrowIcon from '../ArrowIcon.astro';
 import ProjectCard from '../ProjectCard.astro';
 import { conceptbot } from '../../data/conceptbot';
 import { graphrag } from '../../data/graphrag';
+import { compliance } from '../../data/compliance';
 import { exoskeleton } from '../../data/exoskeleton';
 // Add href: '/projects/<slug>/' once a project's detail route exists.
 const projects = [
@@ -32,9 +33,10 @@ const projects = [
     imageAlt: 'Provenance-aware graph construction, retrieval, and local robot task planning',
   },
   {
-    title: 'Learning Compliance with Diffusion Policies',
-    description: 'Learning adaptive compliant robot behaviour from multimodal demonstrations.',
-    tags: ['Diffusion policies', 'Robot learning'],
+    title: compliance.title,
+    description: compliance.description,
+    tags: compliance.tags,
+    href: compliance.path,
   },
 ];
 ---
